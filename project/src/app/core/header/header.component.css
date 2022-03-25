@@ -1,0 +1,39 @@
+/* HEADER Stilization */
+
+header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  position: fixed;
+  top: 0px;
+  left: 202px;
+  z-index: 1;
+}
+
+.nav-list {
+  display: flex;
+}
+
+.nav-list-item {
+  margin-right: 20px;
+}
+
+.nav-list-item:last-of-type {
+  margin: unset;
+}
+
+.nav-list-item-link {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+.nav-list-item-link:hover {
+  color: dodgerblue;
+}

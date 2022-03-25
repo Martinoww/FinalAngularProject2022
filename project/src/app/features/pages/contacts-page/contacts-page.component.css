@@ -1,0 +1,32 @@
+
+.contacts-page-heading {
+    margin-top: 7rem;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+}
+
+.contacts {
+  background-color: white;
+  margin-top: 7rem;
+  width: 50%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  font-size: 24px;
+  border-radius: 8px;
+}
+
+.contacts a {
+  text-decoration: none;
+  color: black;
+  margin-bottom: 1.5rem;
+}
+
+
+.contacts a:hover {
+    text-decoration: underline;
+    color: dodgerblue;
+    margin-bottom: 1.5rem;
+  }

@@ -1,0 +1,38 @@
+
+.create-page-heading {
+    font-size: 60px;
+  color: white;
+  text-align: center;
+  margin-top: 13rem;
+  }
+  
+  .create-form {
+    display: flex;
+    flex-direction: column;
+    width: 38%;
+    margin: 4rem auto;
+    padding: 3rem 0 2rem;
+    background: white;
+    border: none;
+    border-radius: 8px;
+    align-items: center;
+  }
+  
+  .create-form input {
+    margin-bottom: 2rem;
+  width: 70%;
+  font-size: 23px;
+  border-radius: 8px;
+  border: 1px solid gray;
+  }
+  
+  .create-form .create-form-btn {
+    color: white;
+  background-color: dodgerblue;
+  border: none;
+  border-radius: 19px;
+  font-size: 23px;
+  padding: 4px 20px 8px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  }
