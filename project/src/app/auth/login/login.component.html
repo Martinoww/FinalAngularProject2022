@@ -1,7 +1,15 @@
 <h2 class="login-page-heading">Login</h2>
-<form class="login-form" action="">
-    <input class="login-form-username" type="text" name="Username" id="username" placeholder="Username">
-    <input class="login-form-password" type="password" name="password" id="password" placeholder="Password">
-    <button class="login-form-btn" type="submit">Login</button>
+<form class="login-form"[formGroup]="loginFormGroup" (ngSubmit)="handleLogin()">
+    <input class="login-form-username" [class.input-error]="loginFormGroup.controls['username'].touched && loginFormGroup.controls['username'].invalid" formControlName="username" type="text" name="Username" id="username" placeholder="Username">
+    <ng-container *ngIf="loginFormGroup.controls['username'].touched && loginFormGroup.controls['username'].invalid">
+        <p *ngIf="loginFormGroup.controls['username'].errors.required" class="error">Username is required!</p>
+        <p *ngIf="loginFormGroup.controls['username'].errors.minlength" class="error">Username must be at least 3 symbols long</p>
+    </ng-container>
+    <input class="login-form-password" [class.input-error]="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid" formControlName="password" type="password" name="password" id="password" placeholder="Password">
+    <ng-container *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid">
+        <p *ngIf="loginFormGroup.controls['password'].errors.required" class="error">Password is required!</p>
+        <p *ngIf="loginFormGroup.controls['password'].errors.minlength" class="error">Password must be at least 5 symbols long</p>
+    </ng-container>
+    <button class="login-form-btn" [disabled]="loginFormGroup.invalid">Login</button>
     <p class="login-form-paragraph">Don't have an account?<a routerLink="/register">Register</a></p>
 </form>

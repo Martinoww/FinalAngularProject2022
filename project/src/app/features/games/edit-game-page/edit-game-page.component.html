@@ -1,8 +1,23 @@
 <h2 class="edit-page-heading">Edit [game.title]</h2>
-    <form class="edit-form" action="">
-        <input class="edit-form-imageUrl" type="text" name="imageUrl" placeholder="ImageUrl">
-        <input class="edit-form-title" type="text" name="title" placeholder="Title">
-        <input class="edit-form-description" type="text" name="description" placeholder="Description">
-        <input class="edit-form-price" type="text" name="price" placeholder="Price">
-        <button class="edit-form-btn">Edit</button>
-    </form>
+<form class="edit-form" [formGroup]="editFormGroup" (ngSubmit)="handleEditGame()">
+    <input [class.input-error]="editFormGroup.controls['imageUrl'].touched && editFormGroup.controls['imageUrl'].invalid" class="edit-form-imageUrl" formControlName="imageUrl" type="text" name="imageUrl" placeholder="ImageUrl">
+    <ng-container *ngIf="editFormGroup.controls['imageUrl'].touched && editFormGroup.controls['imageUrl'].invalid">
+        <p *ngIf="editFormGroup.controls['imageUrl'].errors.required" class="error">ImageURL is required!</p>
+        <p *ngIf="editFormGroup.controls['imageUrl'].errors.minlength" class="error">ImageURL must be at least 6 symbols long</p>
+    </ng-container>
+    <input [class.input-error]="editFormGroup.controls['title'].touched && editFormGroup.controls['title'].invalid" class="edit-form-title" formControlName="title" type="text" name="title" placeholder="Title">
+    <ng-container *ngIf="editFormGroup.controls['title'].touched && editFormGroup.controls['title'].invalid">
+        <p *ngIf="editFormGroup.controls['title'].errors.required" class="error">Title is required!</p>
+        <p *ngIf="editFormGroup.controls['title'].errors.minlength" class="error">Title must be at least 2 symbols long</p>
+    </ng-container>
+    <textarea [class.input-error]="editFormGroup.controls['description'].touched && editFormGroup.controls['description'].invalid" class="edit-form-description" formControlName="description" name="description" placeholder="Description"></textarea>
+    <ng-container *ngIf="editFormGroup.controls['description'].touched && editFormGroup.controls['description'].invalid">
+        <p *ngIf="editFormGroup.controls['description'].errors.required" class="error">Description is required!</p>
+        <p *ngIf="editFormGroup.controls['description'].errors.minlength" class="error">Description must be at least 80 symbols long</p>
+    </ng-container>
+    <input [class.input-error]="editFormGroup.controls['price'].touched && editFormGroup.controls['price'].invalid" class="edit-form-price" formControlName="price" type="text" name="price" placeholder="Price">
+    <ng-container *ngIf="editFormGroup.controls['price'].touched && editFormGroup.controls['price'].invalid">
+        <p *ngIf="editFormGroup.controls['price'].errors.required" class="error">Price is required!</p>
+    </ng-container>
+    <button class="edit-form-btn" [disabled]="editFormGroup.invalid">Edit</button>
+</form>

@@ -1,8 +1,23 @@
 <h2 class="create-page-heading">Create Game</h2>
-    <form class="create-form" action="">
-        <input class="create-form-imageUrl" type="text" name="imageUrl" placeholder="ImageUrl">
-        <input class="create-form-title" type="text" name="title" placeholder="Title">
-        <input class="create-form-description" type="text" name="description" placeholder="Description">
-        <input class="create-form-price" type="text" name="price" placeholder="Price">
-        <button class="create-form-btn">Create</button>
+    <form class="create-form" [formGroup]="createFormGroup" (ngSubmit)="handleCreateGame()">
+        <input [class.input-error]="createFormGroup.controls['imageUrl'].touched && createFormGroup.controls['imageUrl'].invalid" class="create-form-imageUrl" formControlName="imageUrl" type="text" name="imageUrl" placeholder="ImageUrl">
+        <ng-container *ngIf="createFormGroup.controls['imageUrl'].touched && createFormGroup.controls['imageUrl'].invalid">
+            <p *ngIf="createFormGroup.controls['imageUrl'].errors.required" class="error">ImageURL is required!</p>
+            <p *ngIf="createFormGroup.controls['imageUrl'].errors.minlength" class="error">ImageURL must be at least 6 symbols long</p>
+        </ng-container>
+        <input [class.input-error]="createFormGroup.controls['title'].touched && createFormGroup.controls['title'].invalid" class="create-form-title" formControlName="title" type="text" name="title" placeholder="Title">
+        <ng-container *ngIf="createFormGroup.controls['title'].touched && createFormGroup.controls['title'].invalid">
+            <p *ngIf="createFormGroup.controls['title'].errors.required" class="error">Title is required!</p>
+            <p *ngIf="createFormGroup.controls['title'].errors.minlength" class="error">Title must be at least 2 symbols long</p>
+        </ng-container>
+        <textarea [class.input-error]="createFormGroup.controls['description'].touched && createFormGroup.controls['description'].invalid" class="create-form-description" formControlName="description" name="description" placeholder="Description"></textarea>
+        <ng-container *ngIf="createFormGroup.controls['description'].touched && createFormGroup.controls['description'].invalid">
+            <p *ngIf="createFormGroup.controls['description'].errors.required" class="error">Description is required!</p>
+            <p *ngIf="createFormGroup.controls['description'].errors.minlength" class="error">Description must be at least 80 symbols long</p>
+        </ng-container>
+        <input [class.input-error]="createFormGroup.controls['price'].touched && createFormGroup.controls['price'].invalid" class="create-form-price" formControlName="price" type="text" name="price" placeholder="Price">
+        <ng-container *ngIf="createFormGroup.controls['price'].touched && createFormGroup.controls['price'].invalid">
+            <p *ngIf="createFormGroup.controls['price'].errors.required" class="error">Price is required!</p>
+        </ng-container>
+        <button class="create-form-btn" [disabled]="createFormGroup.invalid">Create</button>
     </form>

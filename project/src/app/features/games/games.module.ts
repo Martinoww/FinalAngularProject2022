@@ -7,6 +7,7 @@ import { GameDetailPageComponent } from './game-detail-page/game-detail-page.com
 import { RouterModule } from '@angular/router';
 import { CreateGamePageComponent } from './create-game-page/create-game-page.component';
 import { EditGamePageComponent } from './edit-game-page/edit-game-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { EditGamePageComponent } from './edit-game-page/edit-game-page.component
   imports: [
     CommonModule,
     GamesRoutingModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ]
 })
 export class GamesModule { }

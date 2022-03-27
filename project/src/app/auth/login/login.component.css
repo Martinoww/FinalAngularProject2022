@@ -41,3 +41,13 @@
   .login-form .login-form-paragraph {
     font-size: 19px;
   }
+
+  .error {
+    color: red;
+    margin-bottom: 1rem;
+  }
+
+  .input-error {
+    background-color: rgb(255, 167, 167);
+    color: black;
+  }
