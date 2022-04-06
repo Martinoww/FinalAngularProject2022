@@ -18,6 +18,7 @@
 }
 
 .register-form .register-form-username,
+.register-form .register-form-email,
 .register-form .register-form-password,
 .register-form .register-form-confirm-password {
   margin-bottom: 2rem;

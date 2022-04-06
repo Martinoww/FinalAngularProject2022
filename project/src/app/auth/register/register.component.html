@@ -5,6 +5,11 @@
         <p *ngIf="registerFormGroup.controls['username'].errors.required" class="error">Username is required!</p>
         <p *ngIf="registerFormGroup.controls['username'].errors.minlength" class="error">Username must be at least 3 symbols long</p>
     </ng-container>
+    <input class="register-form-email" [class.input-error]="registerFormGroup.controls['email'].touched && registerFormGroup.controls['email'].invalid" formControlName="email" type="email" name="Email" id="email" placeholder="example@gmail.com">
+    <ng-container *ngIf="registerFormGroup.controls['email'].touched && registerFormGroup.controls['email'].invalid">
+        <p *ngIf="registerFormGroup.controls['email'].errors.required" class="error">Email is required!</p>
+        <p *ngIf="registerFormGroup.controls['email'].errors.pattern" class="error">Email is not valid</p>
+    </ng-container>
    <div class="passwords-container" formGroupName="passwords">
     <input class="register-form-password" [class.input-error]="passwordsGroup.controls['password'].touched && passwordsGroup.controls['password'].invalid" formControlName="password" type="password" name="password" id="password" placeholder="Password">
     <ng-container *ngIf="passwordsGroup.controls['password'].touched && passwordsGroup.controls['password'].invalid">

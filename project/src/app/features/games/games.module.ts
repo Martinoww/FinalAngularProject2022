@@ -17,13 +17,13 @@ import { ReactiveFormsModule } from '@angular/forms';
        MyGamesComponent,
        GameDetailPageComponent,
        CreateGamePageComponent,
-       EditGamePageComponent
-  ],
-  imports: [
-    CommonModule,
-    GamesRoutingModule,
-    RouterModule,
-    ReactiveFormsModule
+       EditGamePageComponent,
+      ],
+      imports: [
+        CommonModule,
+        GamesRoutingModule,
+        RouterModule,
+        ReactiveFormsModule,
   ]
 })
 export class GamesModule { }

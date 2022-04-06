@@ -1,25 +1,19 @@
-<h3 class="detail-card-heading">CounterStrike:GO</h3>
+<ng-container *ngIf="!!game">
+    <h3 class="detail-card-heading">{{game.title}}</h3>
 <div class="detail-img-wrapper">
-    <img src="https://bookmaker-ratings.bg/wp-content/uploads/sites/12/2021/01/CS-Global-Offensive.jpg" alt="">
+    <img src={{game.imgURL}} alt="">
 </div>
 <article class="detail-card-description-article">
-    <p class="detail-card-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo deserunt repudiandae inventore voluptatum voluptatem, vitae minima iste amet, corrupti hic quasi sapiente vero magnam! Veniam omnis officia pariatur dolores officiis sapiente, maiores repellendus voluptatem, nemo temporibus cumque, accusantium enim dignissimos? Voluptatem facere fugiat, cum officia esse sed voluptas repellendus excepturi deleniti. Deleniti sapiente accusantium laudantium dolorem, ipsam quas laboriosam at placeat modi quos in dolores tempora veniam illo cupiditate laborum, ad voluptates eaque perspiciatis nam possimus reiciendis? Officia dolores facilis provident sed totam cumque nisi minus! Commodi nobis mollitia iusto odit nam libero sunt officia beatae quod sit minus laborum, fuga totam nulla sint! Commodi non repellendus soluta pariatur. Ipsa possimus nobis non ipsum dolorum sapiente officiis, beatae facilis sed veniam esse deserunt, culpa reiciendis quo harum numquam quae officia! Reprehenderit cum accusamus quam repudiandae error vitae a voluptatibus. Tempore minima odit omnis nostrum consequuntur saepe porro, neque quas ipsa amet accusantium sapiente veniam commodi itaque voluptate laborum ab eligendi in magni. Cupiditate quis incidunt mollitia quam delectus quisquam. Placeat eos quam incidunt laudantium eveniet sit, nihil unde quidem esse odio enim aliquid! Cumque, tempora possimus. Fuga explicabo dolor est commodi, ea officiis incidunt fugiat quidem veniam, tempora, sequi corporis officia aliquid sunt! Praesentium, reprehenderit. Non fugit tempora natus vitae magnam repellat doloremque cum ut veritatis, libero quod est possimus maiores veniam iusto asperiores aut minima quia consectetur doloribus reprehenderit. Ipsam quas possimus asperiores. Ipsa enim facilis dolorum quo excepturi iusto placeat at, sequi laborum praesentium accusantium commodi nobis possimus iure libero maiores consequatur quaerat cum nostrum repudiandae facere tenetur nesciunt alias. Rem, delectus nisi quibusdam quas quod porro pariatur error aut quasi mollitia minus in dolorem doloremque illo, vitae iure a culpa asperiores magnam obcaecati omnis quidem temporibus. Porro maxime nostrum necessitatibus sapiente asperiores, error non autem odit eius!Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem totam quod
-        impedit autem amet mollitia corporis, facere repellat sunt officiis placeat quis esse animi eius aspernatur
-        alias eum maxime, reprehenderit quibusdam earum. Exercitationem est, itaque incidunt officiis corporis autem
-        molestiae iste eligendi harum neque blanditiis possimus deleniti velit! Corporis fugit temporibus nam
-        molestiae doloremque inventore officia provident maiores aliquam praesentium, rerum fugiat accusamus. Earum
-        in quis fugiat sit ratione alias magni repellendus maiores, aspernatur fuga molestias illo et eius error
-        dignissimos aperiam illum incidunt vero, nam saepe, delectus nulla. Est dolorum in, natus nostrum eius
-        deserunt facere. Dolor, nostrum aliquid! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste
-        nulla iureeaque, ipsum quibusdam id laborum ad in a sapiente veritatis eum aperiam, officiis tempore quod delectus ut
-        harum eius. Vel error sapiente odio. Repellat culpa inventore possimus mollitia odio harum. Modi odio
-        numquam itaque delectus harum enim quae, ratione eius et nesciunt dolorem repellendus assumenda deserunt,
-        quisquam dicta sapiente doloremque. Repudiandae voluptatem esse similique iste sint ad corrupti qui
-        consectetur! Nulla quod a aut harum vel placeat culpa consequatur.</p>
+    <p class="detail-card-description">{{game.description}}</p>
     <div class="edit-delete-container">
-        <a [routerLink]="['/games/edit', '44555asdd55sdfgg']" class="edit-card-link">Edit</a>
-        <a href="#" class="delete-card-link">Delete</a>
+        <a [routerLink]="['/games/edit', game.objectId]" class="edit-card-link">Edit</a>
+        <a (click)="handleDeleteGame()" href="javascript:void(0)" class="delete-card-link">Delete</a>
     </div>
     <!-- TODO: Add Likes button-->
     <!-- <p class="detail-card-likes">Likes: 4</p> -->
 </article>
+</ng-container>
+
+<ng-container *ngIf="!game">
+    <p>loading &hellip;</p>
+</ng-container>
