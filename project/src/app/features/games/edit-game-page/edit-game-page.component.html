@@ -1,4 +1,4 @@
-<h2 class="edit-page-heading">Edit [game.title]</h2>
+<h2 class="edit-page-heading">Edit {{gameInfo && gameInfo.title}}</h2>
 <form class="edit-form" [formGroup]="editFormGroup" (ngSubmit)="handleEditGame()">
     <input [class.input-error]="editFormGroup.controls['imageUrl'].touched && editFormGroup.controls['imageUrl'].invalid" class="edit-form-imageUrl" formControlName="imageUrl" type="text" name="imageUrl" placeholder="ImageUrl">
     <ng-container *ngIf="editFormGroup.controls['imageUrl'].touched && editFormGroup.controls['imageUrl'].invalid">

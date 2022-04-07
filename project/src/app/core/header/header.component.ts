@@ -1,30 +1,43 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { Observable } from 'rxjs';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnChanges{
+export class HeaderComponent implements OnInit{
 
-  isLogged:boolean = false
+  isLogged$: Observable<boolean> = this.userService.isLogged$;
+  isLoggingOut = false
 
-  constructor(private authService: AuthService, private route: Router) { }
+  constructor(private userService: UserService, private route: Router) { }
 
   ngOnInit(): void {
-    this.isLogged = !!this.authService.getItem('userData');
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.isLogged = !!this.authService.getItem('userData');
-    
-  }
 
   handleLogOut(): void {
-    this.authService.removeItem('userData')
-    this.route.navigate(['/home'])
+    if (this.isLoggingOut) {
+      return;
+    }
+
+    this.isLoggingOut = true;
+    console.log('logout called');
+
+    this.userService.logout$().subscribe({
+      next: () => {
+      },
+      complete: () => {
+        this.isLoggingOut = false;
+        this.route.navigate(['/home']);
+      },
+      error: () => {
+        this.isLoggingOut = false;
+      }
+    });
   }
 
 }

@@ -8,7 +8,7 @@
             <img src={{game.imgURL}} class="game-card-img">
         </div>
         <p class="game-card-name">{{game.title}}</p>
-        <span class="game-card-price">{{game.price}}</span>
+        <span class="game-card-price">Price: $ {{game.price}}</span>
         <a [routerLink]="['/games/details', game.objectId]" class="game-card-details-link">Details</a>
     </div>
 </section>

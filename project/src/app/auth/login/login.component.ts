@@ -1,9 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,22 +15,23 @@ export class LoginComponent implements OnInit {
     'password': new FormControl(null, [Validators.required, Validators.minLength(5)])
   })
 
-  constructor(private formBuilder:FormBuilder, private http: HttpClient, private route: Router, private authService: AuthService) { }
+  constructor(private formBuilder:FormBuilder, private route: Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
   handleLogin():void {
-    let headers = new HttpHeaders()
-    .set('X-Parse-Application-Id', 'gufQwjDzdsfVjsHkGCZgEgdUcRTqquBWGJvFdVjz')
-    .set('X-Parse-REST-API-Key', 'XTtHwUdimgO1oNXXnazKB0SD4BusNQUQPjc6XTc8')
-    .set('X-Parse-Revocable-Session', '1')
-    .set('Content-Type', 'application/json');
-
-    this.http.post<any>(`${environment.apiUrl}login`, JSON.stringify(this.loginFormGroup.value), {'headers': headers}).subscribe(data =>{
-      this.authService.setItem('userData', data)
-    });
-    this.route.navigate([`/games`]);
+    this.userService.login$(this.loginFormGroup.value).subscribe({
+      next: ()=> {
+        this.route.navigate([`/games`]);
+      },
+      complete: () => {
+        console.log('login stream completed');
+      },
+      error: (err) => {
+        alert(err);
+      }
+    })
   }
 
 }

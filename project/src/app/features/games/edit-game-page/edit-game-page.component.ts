@@ -48,7 +48,7 @@ export class EditGamePageComponent implements OnInit {
       this.editFormGroup.patchValue({imageUrl: data.imgURL});
       this.editFormGroup.patchValue({description: data.description});
       this.editFormGroup.patchValue({price: data.price});
-      
+      this.gameInfo = data;
     })
 
   }
