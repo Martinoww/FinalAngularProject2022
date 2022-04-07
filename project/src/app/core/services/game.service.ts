@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment'
 export class GameService {
 
 
-  headers = new HttpHeaders()
+ private _headers = new HttpHeaders()
   .set('X-Parse-Application-Id', 'gufQwjDzdsfVjsHkGCZgEgdUcRTqquBWGJvFdVjz')
   .set('X-Parse-REST-API-Key', 'XTtHwUdimgO1oNXXnazKB0SD4BusNQUQPjc6XTc8')
   .set('Content-Type', 'application/json');
@@ -18,11 +18,11 @@ export class GameService {
   constructor(private http: HttpClient) { }
     
   loadGames(): Observable<IGame[]> {
-    return this.http.get<IGame[]>(`${environment.apiUrl}classes/Games`, {'headers': this.headers})
+    return this.http.get<IGame[]>(`${environment.apiUrl}classes/Games`, {'headers': this._headers})
     }
 
   loadGameById(id): Observable<IGame> {
-    return this.http.get<IGame>(`${environment.apiUrl}classes/Games/${id}`, {'headers': this.headers})
+    return this.http.get<IGame>(`${environment.apiUrl}classes/Games/${id}`, {'headers': this._headers})
     }
 
 }

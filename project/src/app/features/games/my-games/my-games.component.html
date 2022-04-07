@@ -1,67 +1,17 @@
+<ng-container *ngIf="!!myGames">
 <h2 class="my-games-page-heading">My Games</h2>
 <section  class="my-games-section">
-    <div class="my-game-card">
+    <div class="my-game-card" *ngFor="let game of myGames">
         <div class="img-wrapper">
-            <img src="https://bookmaker-ratings.bg/wp-content/uploads/sites/12/2021/01/CS-Global-Offensive.jpg" class="game-card-img">
+            <img src={{game.imgURL}} class="game-card-img">
         </div>
-        <p class="game-card-name">CounterStrike:GO</p>
-        <span class="game-card-price">12.99$</span>
-        <button class="game-card-details">Details</button>
-    </div>
-    <div class="my-game-card">
-        <div class="img-wrapper">
-            <img src="https://bookmaker-ratings.bg/wp-content/uploads/sites/12/2021/01/CS-Global-Offensive.jpg" class="game-card-img">
-        </div>
-        <p class="game-card-name">CounterStrike:GO</p>
-        <span class="game-card-price">12.99$</span>
-        <button class="game-card-details">Details</button>
-    </div>
-    <div class="my-game-card">
-        <div class="img-wrapper">
-            <img src="https://bookmaker-ratings.bg/wp-content/uploads/sites/12/2021/01/CS-Global-Offensive.jpg" class="game-card-img">
-        </div>
-        <p class="game-card-name">CounterStrike:GO</p>
-        <span class="game-card-price">12.99$</span>
-        <button class="game-card-details">Details</button>
-    </div>
-    <div class="my-game-card">
-        <div class="img-wrapper">
-            <img src="https://bookmaker-ratings.bg/wp-content/uploads/sites/12/2021/01/CS-Global-Offensive.jpg" class="game-card-img">
-        </div>
-        <p class="game-card-name">CounterStrike:GO</p>
-        <span class="game-card-price">12.99$</span>
-        <button class="game-card-details">Details</button>
-    </div>
-    <div class="my-game-card">
-        <div class="img-wrapper">
-            <img src="https://bookmaker-ratings.bg/wp-content/uploads/sites/12/2021/01/CS-Global-Offensive.jpg" class="game-card-img">
-        </div>
-        <p class="game-card-name">CounterStrike:GO</p>
-        <span class="game-card-price">12.99$</span>
-        <button class="game-card-details">Details</button>
-    </div>
-    <div class="my-game-card">
-        <div class="img-wrapper">
-            <img src="https://bookmaker-ratings.bg/wp-content/uploads/sites/12/2021/01/CS-Global-Offensive.jpg" class="game-card-img">
-        </div>
-        <p class="game-card-name">CounterStrike:GO</p>
-        <span class="game-card-price">12.99$</span>
-        <button class="game-card-details">Details</button>
-    </div>
-    <div class="my-game-card">
-        <div class="img-wrapper">
-            <img src="https://bookmaker-ratings.bg/wp-content/uploads/sites/12/2021/01/CS-Global-Offensive.jpg" class="game-card-img">
-        </div>
-        <p class="game-card-name">CounterStrike:GO</p>
-        <span class="game-card-price">12.99$</span>
-        <button class="game-card-details">Details</button>
-    </div>
-    <div class="my-game-card">
-        <div class="img-wrapper">
-            <img src="https://bookmaker-ratings.bg/wp-content/uploads/sites/12/2021/01/CS-Global-Offensive.jpg" class="game-card-img">
-        </div>
-        <p class="game-card-name">CounterStrike:GO</p>
-        <span class="game-card-price">12.99$</span>
-        <button class="game-card-details">Details</button>
+        <p class="my-game-card-name">{{game.title}}</p>
+        <span class="my-game-card-price">Price: $ {{game.price}}</span>
+        <a [routerLink]="['/games/details', game.objectId]" class="my-game-card-details-link">Details</a>
     </div>
 </section>    
+</ng-container>
+
+<ng-container *ngIf="!myGames">
+    <p>Loading &hellip;</p>
+</ng-container>

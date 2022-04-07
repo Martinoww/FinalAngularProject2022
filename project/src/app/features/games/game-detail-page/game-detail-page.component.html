@@ -5,7 +5,7 @@
 </div>
 <article class="detail-card-description-article">
     <p class="detail-card-description">{{game.description}}</p>
-    <div class="edit-delete-container">
+    <div *ngIf="isOwner" class="edit-delete-container">
         <a [routerLink]="['/games/edit', game.objectId]" class="edit-card-link">Edit</a>
         <a (click)="handleDeleteGame()" href="javascript:void(0)" class="delete-card-link">Delete</a>
     </div>

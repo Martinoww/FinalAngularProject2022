@@ -58,9 +58,20 @@ export class EditGamePageComponent implements OnInit {
     .set('X-Parse-Application-Id', 'gufQwjDzdsfVjsHkGCZgEgdUcRTqquBWGJvFdVjz')
     .set('X-Parse-REST-API-Key', 'XTtHwUdimgO1oNXXnazKB0SD4BusNQUQPjc6XTc8')
     .set('Content-Type', 'application/json');
-    this.http.put<any>(`${environment.apiUrl}classes/Games/${this.paramId}`, JSON.stringify(this.editFormGroup.value), {'headers': headers}).subscribe(data =>{
-      console.log(data);
+
+
+    let body = {
+      'imgURL': this.editFormGroup.value.imageUrl,
+      'title': this.editFormGroup.value.title,
+      'description': this.editFormGroup.value.description,
+      'price': this.editFormGroup.value.price,
+    }
+
+    this.http.put<any>(`${environment.apiUrl}classes/Games/${this.paramId}`, JSON.stringify(body), {'headers': headers}).subscribe({
+      next: () => {
+        this.route.navigate([`/games/details/${this.paramId}`])
+      },
     });
-    this.route.navigate([`/games/details/${this.paramId}`])
+    
   }
 }

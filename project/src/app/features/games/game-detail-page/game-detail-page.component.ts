@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IGame } from 'src/app/core/interfaces';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { GameService } from 'src/app/core/services/game.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,17 +14,23 @@ import { environment } from 'src/environments/environment';
 export class GameDetailPageComponent implements OnInit {
 
   game:IGame;
-
+  isOwner:boolean = false;
   paramId:any;
 
-  constructor(private gameService: GameService, private activateRoute: ActivatedRoute, private http: HttpClient, private route: Router) { }
+  constructor(private gameService: GameService, private activateRoute: ActivatedRoute, private http: HttpClient, private route: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.paramId = this.activateRoute.snapshot.paramMap.get('id')
 
+    let currUser = this.authService.getItem('userData');
+    if(currUser !== null) {
+      currUser = currUser['objectId']
+    }
+    
+    this.paramId = this.activateRoute.snapshot.paramMap.get('id')
+    
     this.gameService.loadGameById(this.paramId).subscribe(gameData => {
       this.game = gameData;
-      
+      this.isOwner = currUser === gameData.owner.objectId;
     })
     
   }

@@ -32,19 +32,21 @@
     border-top-left-radius: 8px;
   }
   
-  .my-game-card .game-card-name {
+  .my-game-card .my-game-card-name {
     text-align: center;
     font-size: 27px;
     margin: 2rem 0;
   }
   
-  .my-game-card .game-card-price {
+  .my-game-card .my-game-card-price {
     display: block;
     text-align: center;
     font-size: 20px;
   }
   
-  .my-game-card .game-card-details {
+  .my-game-card .my-game-card-details-link {
+    text-decoration: none;
+    text-align: center;
     margin: 2rem auto;
     display: block;
     width: 90%;
@@ -55,6 +57,5 @@
     border: none;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
-    cursor: pointer;
   }
   

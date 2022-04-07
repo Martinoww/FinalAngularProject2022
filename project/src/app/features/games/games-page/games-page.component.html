@@ -1,9 +1,9 @@
-<form class="searchbar-form" action="">
-    <input type="text" name="search" id="search" placeholder="Search a game">
-    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+<form class="searchbar-form" (ngSubmit)="handleSearch()">
+    <input type="text" [formControl]="search" name="search" id="search" placeholder="Search a game">
+    <button><i class="fa-solid fa-magnifying-glass"></i></button>
 </form>
-<section  class="games-section" *ngIf="!!games">
-    <div class="game-card" *ngFor="let game of games">
+<section  class="games-section" *ngIf="!!gamesToShow">
+    <div class="game-card" *ngFor="let game of gamesToShow">
         <div class="img-wrapper">
             <img src={{game.imgURL}} class="game-card-img">
         </div>
@@ -13,6 +13,11 @@
     </div>
 </section>
 
-<div *ngIf="!games">
+<div *ngIf="gamesToShow && gamesToShow.length == 0">
+    <p>Not Found!</p>
+</div>
+
+
+<div *ngIf="!gamesToShow">
     <p>Loading &hellip;</p>
 </div>

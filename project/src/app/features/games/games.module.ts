@@ -7,7 +7,7 @@ import { GameDetailPageComponent } from './game-detail-page/game-detail-page.com
 import { RouterModule } from '@angular/router';
 import { CreateGamePageComponent } from './create-game-page/create-game-page.component';
 import { EditGamePageComponent } from './edit-game-page/edit-game-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         GamesRoutingModule,
         RouterModule,
         ReactiveFormsModule,
+        FormsModule,
   ]
 })
 export class GamesModule { }
