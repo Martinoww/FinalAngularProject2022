@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
         this.route.navigate([`/games`]);
       },
       complete: () => {
-        console.log('login stream completed');
       },
       error: (err) => {
         alert(err);

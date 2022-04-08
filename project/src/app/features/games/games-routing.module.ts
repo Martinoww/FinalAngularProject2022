@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from "@angular/router";
+import { ProfileGuard } from "src/app/core/guards/profile.guard";
 import { CreateGamePageComponent } from "./create-game-page/create-game-page.component";
 import { EditGamePageComponent } from "./edit-game-page/edit-game-page.component";
 import { GameDetailPageComponent } from "./game-detail-page/game-detail-page.component";
@@ -11,6 +12,7 @@ const routes:Routes = [
         component: GamesPageComponent
     },
     {
+        canActivate: [ProfileGuard],
         path:"my-games",
         component: MyGamesComponent
     },
@@ -19,10 +21,12 @@ const routes:Routes = [
         component: GameDetailPageComponent
     },
     {
+        canActivate: [ProfileGuard],
         path:"games/edit/:id",
         component: EditGamePageComponent
     },
     {
+        canActivate: [ProfileGuard],
         path:"add",
         component: CreateGamePageComponent
     }

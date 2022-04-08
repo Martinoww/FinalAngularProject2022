@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/user.service';
@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit, AfterContentChecked{
 
   isLogged$: Observable<boolean> = this.userService.isLogged$;
   isLoggingOut = false
@@ -20,11 +20,13 @@ export class HeaderComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.username = this.authService.getItem('userData')['username'];
-    console.log(this.username);
-    
+    this.username = this.authService.getItem('userData') == null ? '' : this.authService.getItem('userData')['username'];
   }
 
+  ngAfterContentChecked(): void {
+    this.username = this.authService.getItem('userData') == null ? '' : this.authService.getItem('userData')['username'];
+    
+  }
 
   handleLogOut(): void {
     if (this.isLoggingOut) {
@@ -32,8 +34,6 @@ export class HeaderComponent implements OnInit{
     }
 
     this.isLoggingOut = true;
-    console.log('logout called');
-
     this.userService.logout$().subscribe({
       next: () => {
       },
