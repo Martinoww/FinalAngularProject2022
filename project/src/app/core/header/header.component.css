@@ -28,6 +28,10 @@ header {
   margin: unset;
 }
 
+.nav-list-item-link.user {
+  color: dodgerblue;
+}
+
 .nav-list-item-link {
   text-decoration: none;
   color: black;

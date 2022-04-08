@@ -25,4 +25,16 @@ export class GameService {
     return this.http.get<IGame>(`${environment.apiUrl}classes/Games/${id}`, {'headers': this._headers})
     }
 
+  deleteGame(paramId): Observable<any> {
+    return  this.http.delete<any>(`${environment.apiUrl}classes/Games/${paramId}`, {'headers': this._headers})
+  }
+
+  createGame(body): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}classes/Games`, JSON.stringify(body), {'headers': this._headers})
+  }
+
+  editGame(paramId, body): Observable<any> {
+    return this.http.put<any>(`${environment.apiUrl}classes/Games/${paramId}`, JSON.stringify(body), {'headers': this._headers})
+  }
+
 }

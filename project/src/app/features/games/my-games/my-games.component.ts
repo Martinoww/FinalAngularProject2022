@@ -22,9 +22,6 @@ export class MyGamesComponent implements OnInit {
 
     this.gameService.loadGames().subscribe(data => {
      this.myGames = data['results'].filter(game => currUser && game.owner.objectId === currUser);
-      console.log(this.myGames);
-      
-       
     })
   }
 

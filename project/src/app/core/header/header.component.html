@@ -2,6 +2,7 @@
     <a routerLink="/home" class="logo-wrapper"><img src="assets/images/ic_launcher.png"></a>
     <nav>
         <ul class="nav-list">
+            <li *ngIf="(isLogged$ | async)" class="nav-list-item"><a href="javascript:void(0)" class="nav-list-item-link user">Welcome, {{username}}</a></li>
             <li class="nav-list-item"><a routerLink="/games" class="nav-list-item-link">Games</a></li>
             <li *ngIf="(isLogged$ | async)" class="nav-list-item"><a routerLink="/my-games" class="nav-list-item-link">MyGames</a></li>
             <li *ngIf="(isLogged$ | async)" class="nav-list-item"><a routerLink="/add" class="nav-list-item-link">Create</a></li>

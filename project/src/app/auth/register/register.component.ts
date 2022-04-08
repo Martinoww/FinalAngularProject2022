@@ -35,6 +35,7 @@ get passwordsGroup(): FormGroup {
   handleRegister(): void {
     this.userService.register$({username: this.registerFormGroup.value.username, password: this.registerFormGroup.value.passwords.password, email: this.registerFormGroup.value.email}).subscribe({
       next: () => {
+        
         this.route.navigate([`/games`]);
       },
       complete: () => {

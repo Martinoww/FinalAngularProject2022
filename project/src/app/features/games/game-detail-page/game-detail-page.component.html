@@ -1,19 +1,26 @@
 <ng-container *ngIf="!!game">
     <h3 class="detail-card-heading">{{game.title}}</h3>
-<div class="detail-img-wrapper">
-    <img src={{game.imgURL}} alt="">
-</div>
+    <div class="detail-img-wrapper">
+        <img src={{game.imgURL}} alt="">
+    </div>
+    <div class="likes-container">
+     <p class="detail-card-likes">Likes: {{likesCount}}</p>
+<ng-container *ngIf="currUser && !isOwner">
+    <span *ngIf="!hasLiked" class="like-span" ><button class="like-dislike-btn" (click)="handleLike()"><i  class="fa-solid fa-thumbs-up"></i></button>like</span> 
+    <span *ngIf="hasLiked" class="like-span" ><button class="like-dislike-btn" (click)="handleDislike()"><i  class="fa-solid fa-thumbs-down"></i></button> dislike</span> 
+</ng-container>
+    </div>
 <article class="detail-card-description-article">
     <p class="detail-card-description">{{game.description}}</p>
     <div *ngIf="isOwner" class="edit-delete-container">
         <a [routerLink]="['/games/edit', game.objectId]" class="edit-card-link">Edit</a>
         <a (click)="handleDeleteGame()" href="javascript:void(0)" class="delete-card-link">Delete</a>
     </div>
-    <!-- TODO: Add Likes button-->
-    <!-- <p class="detail-card-likes">Likes: 4</p> -->
 </article>
 </ng-container>
 
-<ng-container *ngIf="!game">
-    <p>loading &hellip;</p>
-</ng-container>
+
+<div class="spinner" *ngIf="!game">
+    <p><mat-spinner></mat-spinner>
+    </p>
+</div>

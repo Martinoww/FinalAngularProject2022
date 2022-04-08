@@ -14,10 +14,11 @@
 </section>
 
 <div *ngIf="gamesToShow && gamesToShow.length == 0">
-    <p>Not Found!</p>
+    <p class="not-found-paragraph">Not Found!</p>
 </div>
 
 
-<div *ngIf="!gamesToShow">
-    <p>Loading &hellip;</p>
+<div class="spinner" *ngIf="!gamesToShow">
+    <p><mat-spinner></mat-spinner>
+    </p>
 </div>

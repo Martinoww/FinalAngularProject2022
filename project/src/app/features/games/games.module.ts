@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { GamesPageComponent } from './games-page/games-page.component';
 import { GamesRoutingModule } from './games-routing.module';
 import { MyGamesComponent } from './my-games/my-games.component';
@@ -25,6 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         RouterModule,
         ReactiveFormsModule,
         FormsModule,
+        BrowserAnimationsModule,
+        MatProgressSpinnerModule,
   ]
 })
 export class GamesModule { }

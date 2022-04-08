@@ -1,4 +1,3 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -9,7 +8,6 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { IGame } from 'src/app/core/interfaces';
 import { GameService } from 'src/app/core/services/game.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-edit-game-page',
@@ -38,7 +36,7 @@ export class EditGamePageComponent implements OnInit {
     price: new FormControl('', [Validators.required]),
   });
 
-  constructor(private formBuilder: FormBuilder, private gameService: GameService, private activateRoute: ActivatedRoute, private http: HttpClient, private route: Router) {}
+  constructor(private formBuilder: FormBuilder, private gameService: GameService, private activateRoute: ActivatedRoute, private route: Router) {}
 
   ngOnInit(): void {
     this.paramId = this.activateRoute.snapshot.paramMap.get('id');
@@ -54,12 +52,6 @@ export class EditGamePageComponent implements OnInit {
   }
   
   handleEditGame() {
-   let headers = new HttpHeaders()
-    .set('X-Parse-Application-Id', 'gufQwjDzdsfVjsHkGCZgEgdUcRTqquBWGJvFdVjz')
-    .set('X-Parse-REST-API-Key', 'XTtHwUdimgO1oNXXnazKB0SD4BusNQUQPjc6XTc8')
-    .set('Content-Type', 'application/json');
-
-
     let body = {
       'imgURL': this.editFormGroup.value.imageUrl,
       'title': this.editFormGroup.value.title,
@@ -67,7 +59,7 @@ export class EditGamePageComponent implements OnInit {
       'price': this.editFormGroup.value.price,
     }
 
-    this.http.put<any>(`${environment.apiUrl}classes/Games/${this.paramId}`, JSON.stringify(body), {'headers': headers}).subscribe({
+    this.gameService.editGame(this.paramId, body).subscribe({
       next: () => {
         this.route.navigate([`/games/details/${this.paramId}`])
       },

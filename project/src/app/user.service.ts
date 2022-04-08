@@ -12,7 +12,18 @@ export class UserService {
 
   private _currentUser = new BehaviorSubject<IUser>(undefined);
   currentUser$ = this._currentUser.asObservable();
-  isLogged$: Observable<boolean> = this.currentUser$.pipe(map(user => !!user)); 
+  isLogged$: Observable<boolean> = this.currentUser$.pipe(map(user => {
+    const userData = this.authService.getItem('userData');
+    if(!!user) {
+      return !!user
+    }else if(!!user == false){
+      if(!!userData){
+        return !!userData
+      }
+    }
+    return !!user
+     
+  })); 
 
   headers = new HttpHeaders()
     .set('X-Parse-Application-Id', 'gufQwjDzdsfVjsHkGCZgEgdUcRTqquBWGJvFdVjz')
@@ -32,8 +43,15 @@ export class UserService {
   }
 
   register$(userData: {username: string, password: string, email: string}): Observable<IUser> {
+    return  this.httpClient.post<IUser>(`${environment.apiUrl}users`, JSON.stringify(userData), {'headers': this.headers}).pipe(map(response => {
+      userData['objectId'] = response.objectId;
+      userData['sessionToken'] = response.sessionToken;
+      userData['createdAt'] = response.createdAt;
+      
     this.authService.setItem('userData', userData)
-    return  this.httpClient.post<IUser>(`${environment.apiUrl}users`, JSON.stringify(userData), {'headers': this.headers});
+      
+      return response
+    }));
   }
 
   logout$(): Observable<void> {

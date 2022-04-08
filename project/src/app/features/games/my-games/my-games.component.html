@@ -12,6 +12,7 @@
 </section>    
 </ng-container>
 
-<ng-container *ngIf="!myGames">
-    <p>Loading &hellip;</p>
-</ng-container>
+<div class="spinner" *ngIf="!myGames">
+    <p><mat-spinner></mat-spinner>
+    </p>
+</div>

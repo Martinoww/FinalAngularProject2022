@@ -58,4 +58,10 @@
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
   }
+
+  .spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 10rem;
+  }
   

@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(tap(event => {
       if (event instanceof HttpResponse){
-        if(event.url.endsWith('login') || event.url.endsWith('users')){          
+        if(event.url.endsWith('login') || event.url.endsWith('users')){    
           const loggedUser: IUser = event.body;
           this.userService.handleLogin(loggedUser);
         }else if(event.url.endsWith('logout')) {
