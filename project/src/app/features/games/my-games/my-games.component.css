@@ -15,9 +15,12 @@
   }
   
   .my-game-card {
-    height: 26rem;
+    height: 29rem;
     background-color: white;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   
   .my-game-card .img-wrapper {
@@ -47,7 +50,7 @@
   .my-game-card .my-game-card-details-link {
     text-decoration: none;
     text-align: center;
-    margin: 2rem auto;
+    margin: 2rem auto 1rem;
     display: block;
     width: 90%;
     font-size: 20px;
