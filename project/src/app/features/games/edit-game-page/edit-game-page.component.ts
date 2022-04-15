@@ -59,10 +59,10 @@ export class EditGamePageComponent implements OnInit {
       'price': this.editFormGroup.value.price,
     }
 
-    this.gameService.editGame(this.paramId, body).subscribe(response => {
-      console.log('game edit', response);
-      this.route.navigate([`/games/details/${this.paramId}`])
-      
+    this.gameService.editGame(this.paramId, body).subscribe( {
+      next: () => {
+        this.route.navigate([`/games/details/${this.paramId}`])
+      },
     });
     
   }

@@ -1,11 +1,12 @@
 <h2 class="register-page-heading">Register</h2>
 <form class="register-form" [formGroup]="registerFormGroup" (ngSubmit)="handleRegister()">
-    <input class="register-form-username" [class.input-error]="registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid" formControlName="username" type="text" name="Username" id="username" placeholder="Username">
+    <p class="error" *ngIf="errMsg">{{errMsg}}</p>
+    <input class="register-form-username" [class.input-error]="usernameIsAlreadyTaken || registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid" formControlName="username" type="text" name="Username" id="username" placeholder="Username">
     <ng-container *ngIf="registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid">
         <p *ngIf="registerFormGroup.controls['username'].errors.required" class="error">Username is required!</p>
         <p *ngIf="registerFormGroup.controls['username'].errors.minlength" class="error">Username must be at least 3 symbols long</p>
     </ng-container>
-    <input class="register-form-email" [class.input-error]="registerFormGroup.controls['email'].touched && registerFormGroup.controls['email'].invalid" formControlName="email" type="email" name="Email" id="email" placeholder="example@gmail.com">
+    <input class="register-form-email" [class.input-error]="emailIsAlreadyTaken || registerFormGroup.controls['email'].touched && registerFormGroup.controls['email'].invalid" formControlName="email" type="email" name="Email" id="email" placeholder="example@gmail.com">
     <ng-container *ngIf="registerFormGroup.controls['email'].touched && registerFormGroup.controls['email'].invalid">
         <p *ngIf="registerFormGroup.controls['email'].errors.required" class="error">Email is required!</p>
         <p *ngIf="registerFormGroup.controls['email'].errors.pattern" class="error">Email is not valid</p>
@@ -22,5 +23,5 @@
     </ng-container>
    </div>
     <button class="register-form-btn" [disabled]="registerFormGroup.invalid">Register</button>
-    <p class="register-form-paragraph">Already have an account?<a routerLink="/login">Login</a></p>
+    <p class="register-form-paragraph">Already have an account?<a routerLink="/user/login">Login</a></p>
 </form>

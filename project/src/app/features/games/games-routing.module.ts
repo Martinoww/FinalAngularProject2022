@@ -8,7 +8,8 @@ import { MyGamesComponent } from "./my-games/my-games.component";
 
 const routes:Routes = [
     {
-        path:"games",
+        path:"",
+        pathMatch: 'full',
         component: GamesPageComponent
     },
     {
@@ -17,12 +18,12 @@ const routes:Routes = [
         component: MyGamesComponent
     },
     {
-        path:"games/details/:id",
+        path:"details/:id",
         component: GameDetailPageComponent
     },
     {
         canActivate: [ProfileGuard],
-        path:"games/edit/:id",
+        path:"edit/:id",
         component: EditGamePageComponent
     },
     {

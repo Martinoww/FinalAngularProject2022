@@ -10,6 +10,10 @@ import { passwordMatch } from '../util';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  
+  errMsg: string = '';
+  emailIsAlreadyTaken:boolean = false;
+  usernameIsAlreadyTaken:boolean = false;
 
 passwordControl = new FormControl(null, [Validators.required, Validators.minLength(5)]);
 
@@ -35,14 +39,32 @@ get passwordsGroup(): FormGroup {
   handleRegister(): void {
     this.userService.register$({username: this.registerFormGroup.value.username, password: this.registerFormGroup.value.passwords.password, email: this.registerFormGroup.value.email}).subscribe({
       next: () => {
-        
+        this.registerFormGroup.reset();
         this.route.navigate([`/games`]);
       },
       complete: () => {
-        console.log('register stream completed');
+        this.errMsg = ''
+        this.emailIsAlreadyTaken = false;
+        this.usernameIsAlreadyTaken = false;
+        console.log('login completed');
+        
       },
       error: (err) => {
-        alert(err);
+        let message = err.error.error;
+
+       if(message === 'Account already exists for this username.'){
+          console.log('username here');
+          
+          this.usernameIsAlreadyTaken = true;
+          this.emailIsAlreadyTaken = false;
+        }else if(message === 'Account already exists for this email address.'){
+          console.log('username here');
+          this.emailIsAlreadyTaken = true
+          this.usernameIsAlreadyTaken = false;
+        }
+        
+        this.errMsg = message;
+        console.log(message, this.usernameIsAlreadyTaken);
       }
     })
   }

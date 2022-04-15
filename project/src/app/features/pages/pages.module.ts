@@ -4,6 +4,7 @@ import { HomePageComponent } from '../pages/home-page/home-page.component';
 import { RouterModule } from '@angular/router';
 import { ContactsPageComponent } from './contacts-page/contacts-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { PagesRoutingModule } from './pages-routing.module';
 
 
 
@@ -15,6 +16,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
   ],
   imports: [
     CommonModule,
+    PagesRoutingModule,
     RouterModule
   ]
 })

@@ -6,12 +6,12 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
-    canActivate: [LoggedGuard],
+    // canActivate: [LoggedGuard],
     path: "login",
     component: LoginComponent
   },
   {
-    canActivate: [LoggedGuard],
+    // canActivate: [LoggedGuard],
     path: "register",
     component: RegisterComponent
   }

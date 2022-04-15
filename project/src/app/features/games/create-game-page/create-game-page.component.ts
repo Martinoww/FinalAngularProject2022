@@ -41,6 +41,7 @@ export class CreateGamePageComponent implements OnInit {
     
     this.gameService.createGame(body).subscribe({
       next: () => {
+        this.createFormGroup.reset();
         this.router.navigate(['/games']);
       },
     })

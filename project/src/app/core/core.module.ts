@@ -7,6 +7,7 @@ import { GameService } from './services/game.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { ErrorHandlerInterceptor } from './error-handler.interceptor';
+import { LikeService } from './services/like.service';
 
 
 
@@ -25,6 +26,7 @@ import { ErrorHandlerInterceptor } from './error-handler.interceptor';
   providers: [
     AuthService,
     GameService,
+    LikeService,
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,
