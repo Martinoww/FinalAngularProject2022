@@ -17,7 +17,6 @@ export class GameDetailPageComponent implements OnInit {
   paramId:any;
   likesCount: number = 0;
   hasLiked: boolean = false;
-  likeId: string;
   currUser;
   currUserLikeId: string;
   isLiking: boolean = false;

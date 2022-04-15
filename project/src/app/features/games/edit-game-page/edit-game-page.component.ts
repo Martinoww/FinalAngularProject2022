@@ -36,7 +36,7 @@ export class EditGamePageComponent implements OnInit {
     price: new FormControl('', [Validators.required]),
   });
 
-  constructor(private formBuilder: FormBuilder, private gameService: GameService, private activateRoute: ActivatedRoute, private route: Router) {}
+  constructor(private formBuilder: FormBuilder, private gameService: GameService, private activateRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.paramId = this.activateRoute.snapshot.paramMap.get('id');
@@ -61,7 +61,7 @@ export class EditGamePageComponent implements OnInit {
 
     this.gameService.editGame(this.paramId, body).subscribe( {
       next: () => {
-        this.route.navigate([`/games/details/${this.paramId}`])
+        this.router.navigate([`/games/details/${this.paramId}`])
       },
     });
     

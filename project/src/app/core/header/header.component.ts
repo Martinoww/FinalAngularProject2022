@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/user.service';
@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit, AfterContentChecked{
   isLoggingOut = false
   username: string;
 
-  constructor(private userService: UserService, private route: Router, private authService: AuthService) { 
+  constructor(private userService: UserService, private router: Router, private authService: AuthService) { 
     
   }
 
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit, AfterContentChecked{
       },
       complete: () => {
         this.isLoggingOut = false;
-        this.route.navigate(['/home']);
+        this.router.navigate(['/home']);
       },
       error: () => {
         this.isLoggingOut = false;

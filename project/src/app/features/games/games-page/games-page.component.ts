@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { IGame } from 'src/app/core/interfaces';
 import { GameService } from '../../../core/services/game.service';
 
@@ -14,7 +14,7 @@ export class GamesPageComponent implements OnInit {
   gamesToShow: IGame[];
   search = new FormControl('')
 
-  constructor(private gameService: GameService, private formBuilder: FormBuilder) { }
+  constructor(private gameService: GameService) { }
 
 
 

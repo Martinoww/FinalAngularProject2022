@@ -18,7 +18,6 @@ import { LikeService } from './services/like.service';
   imports: [
     CommonModule,
     RouterModule,
-    
   ], 
   exports: [
     HeaderComponent
