@@ -68,3 +68,21 @@
     margin-top: 10rem;
   }
   
+
+  .not-found-paragraph {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    position: relative;
+    left: -26px;
+  }
+
+  .not-found-paragraph a {
+    text-decoration: none;
+    color: dodgerblue;
+  }
+
+  .not-found-paragraph a:hover {
+    text-decoration: underline;
+    color: aqua;
+  }

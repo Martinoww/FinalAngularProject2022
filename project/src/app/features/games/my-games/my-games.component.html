@@ -12,6 +12,10 @@
 </section>    
 </ng-container>
 
+<div *ngIf="myGames && myGames.length == 0">
+    <p class="not-found-paragraph">No games created! Let's create some <a routerLink="/games/add">Add game</a></p>
+</div>
+
 <div class="spinner" *ngIf="!myGames">
     <p><mat-spinner></mat-spinner>
     </p>
