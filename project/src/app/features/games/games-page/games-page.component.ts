@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { IGame } from 'src/app/core/interfaces';
 import { GameService } from '../../../core/services/game.service';
 
@@ -8,8 +9,11 @@ import { GameService } from '../../../core/services/game.service';
   templateUrl: './games-page.component.html',
   styleUrls: ['./games-page.component.css']
 })
-export class GamesPageComponent implements OnInit {
+export class GamesPageComponent implements OnInit, OnDestroy {
 
+
+  gamesSubscription: Subscription
+  searchSubscription: Subscription
   games: IGame[];
   gamesToShow: IGame[];
   search = new FormControl('')
@@ -19,7 +23,7 @@ export class GamesPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.gameService.loadGames().subscribe(gameList => {
+    this.gamesSubscription = this.gameService.loadGames().subscribe(gameList => {
         this.games = gameList['results'];
         this.gamesToShow = gameList['results'];
     })
@@ -27,6 +31,11 @@ export class GamesPageComponent implements OnInit {
       const searchResult = this.games.filter(game => game.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()));
       this.gamesToShow = searchResult;
     })
+  }
+
+  ngOnDestroy(): void {
+    this.gamesSubscription.unsubscribe()
+    this.searchSubscription.unsubscribe();
   }
 
   handleSearch(){

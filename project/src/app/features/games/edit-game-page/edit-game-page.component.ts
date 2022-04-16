@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -6,6 +6,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IGame } from 'src/app/core/interfaces';
 import { GameService } from 'src/app/core/services/game.service';
 
@@ -14,10 +15,11 @@ import { GameService } from 'src/app/core/services/game.service';
   templateUrl: './edit-game-page.component.html',
   styleUrls: ['./edit-game-page.component.css'],
 })
-export class EditGamePageComponent implements OnInit {
+export class EditGamePageComponent implements OnInit, OnDestroy {
 
   gameInfo:IGame
   paramId:string;
+  gameSubscription: Subscription;
 
 
   editFormGroup: FormGroup = this.formBuilder.group({
@@ -41,7 +43,7 @@ export class EditGamePageComponent implements OnInit {
   ngOnInit(): void {
     this.paramId = this.activateRoute.snapshot.paramMap.get('id');
     
-    this.gameService.loadGameById(this.paramId).subscribe(data => {
+   this.gameSubscription = this.gameService.loadGameById(this.paramId).subscribe(data => {
       this.editFormGroup.patchValue({title: data.title});
       this.editFormGroup.patchValue({imageUrl: data.imgURL});
       this.editFormGroup.patchValue({description: data.description});
@@ -49,6 +51,10 @@ export class EditGamePageComponent implements OnInit {
       this.gameInfo = data;
     })
 
+  }
+
+  ngOnDestroy(): void {
+    this.gameSubscription.unsubscribe();
   }
   
   handleEditGame() {

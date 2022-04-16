@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IGame } from 'src/app/core/interfaces';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { GameService } from 'src/app/core/services/game.service';
@@ -10,8 +11,10 @@ import { LikeService } from 'src/app/core/services/like.service';
   templateUrl: './game-detail-page.component.html',
   styleUrls: ['./game-detail-page.component.css']
 })
-export class GameDetailPageComponent implements OnInit {
+export class GameDetailPageComponent implements OnInit, OnDestroy {
 
+  gameSubscription: Subscription;
+  likesSubscription: Subscription;
   game:IGame;
   isOwner:boolean = false;
   paramId:any;
@@ -33,13 +36,18 @@ export class GameDetailPageComponent implements OnInit {
     
     this.paramId = this.activateRoute.snapshot.paramMap.get('id')
     
-    this.gameService.loadGameById(this.paramId).subscribe(gameData => {
+    this.gameSubscription = this.gameService.loadGameById(this.paramId).subscribe(gameData => {
       this.game = gameData;
       this.isOwner = this.currUser === gameData.owner.objectId;
     })
 
     this.likesInfo();
     
+  }
+
+  ngOnDestroy(): void {
+    this.gameSubscription.unsubscribe();
+    this.likesSubscription.unsubscribe();
   }
 
    likesInfo() {

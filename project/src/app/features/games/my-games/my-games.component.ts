@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IGame } from 'src/app/core/interfaces';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { GameService } from 'src/app/core/services/game.service';
@@ -8,9 +9,10 @@ import { GameService } from 'src/app/core/services/game.service';
   templateUrl: './my-games.component.html',
   styleUrls: ['./my-games.component.css']
 })
-export class MyGamesComponent implements OnInit {
+export class MyGamesComponent implements OnInit, OnDestroy {
 
   myGames:IGame[];
+  subscription: Subscription;
 
   constructor(private gameService: GameService, private authService: AuthService) { }
 
@@ -20,9 +22,13 @@ export class MyGamesComponent implements OnInit {
       currUser = currUser['objectId'];
     }
 
-    this.gameService.loadGames().subscribe(data => {
+   this.subscription = this.gameService.loadGames().subscribe(data => {
      this.myGames = data['results'].filter(game => currUser && game.owner.objectId === currUser);
     })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 
 }
