@@ -21,14 +21,15 @@ export class ProfileGuard implements CanActivate {
       this.gameSevice.loadGameById(route.paramMap.get('id')).subscribe(response => {
         if(response.owner.objectId === this.authService.getItem('userData')['objectId']){
           subscriber.next(true)
-        };
+        }
+        subscriber.next(false);
+        this.router.navigate(['/home'])
       })
     });
   }else if(this.userIsLogged()){
     return true
   }
 
-  this.router.navigate(['/home'])
   return false
   }
 
