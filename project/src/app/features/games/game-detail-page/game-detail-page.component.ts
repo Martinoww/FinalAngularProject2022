@@ -51,7 +51,7 @@ export class GameDetailPageComponent implements OnInit, OnDestroy {
   }
 
    likesInfo() {
-    this.likeService.loadlikes().subscribe(likes =>{
+    this.likesSubscription = this.likeService.loadlikes().subscribe(likes =>{
       const currGameLikes = likes['results'].filter(item => item['Game']['objectId'] === this.paramId);
 
       this.likesCount = currGameLikes.length

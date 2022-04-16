@@ -27,7 +27,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
         this.games = gameList['results'];
         this.gamesToShow = gameList['results'];
     })
-    this.search.valueChanges.subscribe( searchTerm => {
+    this.searchSubscription = this.search.valueChanges.subscribe( searchTerm => {
       const searchResult = this.games.filter(game => game.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()));
       this.gamesToShow = searchResult;
     })
